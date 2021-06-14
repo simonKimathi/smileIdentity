@@ -6,7 +6,7 @@ import lombok.*;
 import selfie.util.Ignore;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 
 @Table
@@ -30,7 +30,7 @@ public class SmileIdentityResponseDTO {
 
     @OneToMany(mappedBy = "history", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<History> history;
+    private List<History> history;
 
     @Embedded
     @JsonProperty("image_links")
