@@ -43,7 +43,7 @@ public interface Callback {
     @APIResponse(responseCode = "401", description = "Unauthorised")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/processSelfie/")
+    @Path("/processSelfie")
     Response processSelfie(@Valid ProcessSelfieDto processSelfieDto);
 
 }

@@ -14,24 +14,21 @@ public class ProcessSelfieDto {
     private String image;
 
     @Ignore
-    private String IdFirstName="";
+    private String idFirstName="";
     @Ignore
-    private String IdMiddleName="";
+    private String idMiddleName="";
     @Ignore
-    private String IdLastName="";
+    private String idLastName="";
     @Ignore
-    private String IdCountry="KE";
+    private String idCountry="KE";
     @Ignore
-    private String IdType="NATIONAL_ID";
+    private String idType="NATIONAL_ID";
     @Ignore
-    private String IdNumber="";
+    private String idNumber="";
     @Ignore
-    private String IdDob="";
+    private String idDob="";
     @Ignore
-    private String IdPhoneNumber="";
+    private String idPhoneNumber="";
     @Ignore
-    private String IdConfirmed="true";
-    @Ignore
-    private String Action="true";
-
+    private String idConfirmed="true";
 }
