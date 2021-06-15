@@ -19,6 +19,12 @@ public class SelfieResults {
     private long id;
 
     @Column
+    private String userId;
+
+    @Column
+    private String jobId;
+
+    @Column
     private String json;
 
     @Column
