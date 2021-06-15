@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/Johnonyango/LeagueManager.git
+                git 'https://github.com/simonKimathi/smileIdentity.git'
                 sh './mvnrw clean compile'
             }
         }
