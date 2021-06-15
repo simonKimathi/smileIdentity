@@ -125,9 +125,7 @@ public class SelfieService {
 
             WebApi connection = new WebApi(PARTNER_ID, CALLBACK, DECODED_API_KEY, TEST_SERVER_ID); //0-test, 1--development
 
-            String response = connection.submit_job(partnerParameters.get(), imageParameters.get(), idInfo.get(), options.get());
-            System.out.println("\n Response" + response);
-            return response;
+            return connection.submit_job(partnerParameters.get(), imageParameters.get(), idInfo.get(), options.get());
 
 
         } catch (Exception e) {

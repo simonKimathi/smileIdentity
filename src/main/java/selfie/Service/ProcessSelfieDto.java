@@ -10,8 +10,9 @@ public class ProcessSelfieDto {
     private String userId;
     private String jobId;
     private int jobType;
-    private int imageType;
+    private int imageType=2;
     private String image;
+
     @Ignore
     private String IdFirstName="";
     @Ignore
@@ -30,5 +31,7 @@ public class ProcessSelfieDto {
     private String IdPhoneNumber="";
     @Ignore
     private String IdConfirmed="true";
+    @Ignore
+    private String Action="true";
 
 }
