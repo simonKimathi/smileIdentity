@@ -38,11 +38,19 @@ public class CallbackImpl implements Callback {
 
     @Override
     public Response processSelfie(@Valid ProcessSelfieDto processSelfieDto) {
+
         String jsonString = selfieService.processSelfie(processSelfieDto);
         Gson gson = new Gson();
         SmileIdentityResponseDTO smileIdentityResponseDTO = gson.fromJson(jsonString, SmileIdentityResponseDTO.class);
-        return Response.status(Response.Status.OK)
-                .entity(SuccessVm.builder().success(true).data(smileIdentityResponseDTO).msg("Done").build())
-                .build();
+        if(processSelfieDto.getJobType()==4 || processSelfieDto.getJobType()==1){
+            return Response.status(Response.Status.OK)
+                    .entity(SuccessVm.builder().success(true).data(smileIdentityResponseDTO).msg("Done").build())
+                    .build();
+        }
+        else {
+            return Response.status(Response.Status.OK)
+                    .entity(SuccessVm.builder().success(true).data(smileIdentityResponseDTO).msg("Done").build())
+                    .build();
+        }
     }
 }
