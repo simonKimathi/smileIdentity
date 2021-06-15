@@ -1,6 +1,10 @@
 package selfie.Service;
 
+import org.apache.commons.io.FileUtils;
 import smile.identity.core.*;
+
+import java.io.File;
+import java.util.Base64;
 
 import static selfie.util.Constants.*;
 
@@ -45,6 +49,9 @@ public class SelfieService {
             // 3 - ID card image jpg or png base 64 encoded
             String inputFilePath = "/home/symoh/workspace/smileIdentity/simon.png";  //dark
             String yona = "/home/symoh/workspace/smileIdentity/yona.png";  //yona
+            byte[] fileContent = FileUtils.readFileToByteArray(new File(yona));
+            String encodedString = Base64.getEncoder().encodeToString(fileContent);
+            System.out.println("base 64:****"+encodedString);
 //            ClassLoader classLoader = getClass().getClassLoader();
 //            File inputFile = new File(classLoader
 //                    .getResource(inputFilePath)
