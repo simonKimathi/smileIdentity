@@ -19,10 +19,18 @@ public class SelfieResults {
     private long id;
 
     @Column
+    private String userId;
+
+    @Column
+    private String jobId;
+
+    @Column
     private String json;
 
     @Column
     private ResultSource source=ResultSource.FIRSTRESULTS;
+
+    @Column boolean finalResult;
 
 
 

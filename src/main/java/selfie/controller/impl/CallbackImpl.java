@@ -7,6 +7,9 @@ import selfie.Service.ProcessSelfieDto;
 import selfie.Service.SelfieService;
 import selfie.controller.Callback;
 import selfie.controller.vm.SuccessVm;
+import selfie.model.ResultSource;
+import selfie.model.SelfieResults;
+import selfie.repository.SelfieResultsRepository;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -20,6 +23,10 @@ public class CallbackImpl implements Callback {
     @Inject
     public Logger logger;
 
+    @Inject
+    public SelfieResultsRepository selfieResultsRepository;
+
+
     @Override
     public Response smileIdentityCallback(String json) {
         logger.info("callback called GET");
@@ -28,6 +35,18 @@ public class CallbackImpl implements Callback {
         boolean success = false;
         Gson gson = new Gson();
         SmileIdentityResponseDTO smileIdentityResponseDTO = gson.fromJson(json, SmileIdentityResponseDTO.class);
+
+        //update db
+        SelfieResults selfieResults=selfieResultsRepository
+                .getResultsByJobId(smileIdentityResponseDTO
+                        .getResult()
+                        .getPartnerParams()
+                        .getJob_id());
+        selfieResults.setJson(json);
+        selfieResults.setSource(ResultSource.CALLBACK);
+        selfieResultsRepository.edit(selfieResults);
+
+
         if(smileIdentityResponseDTO.getResult().getPartnerParams().getJob_type().equals("2")){ //authentication
             switch (smileIdentityResponseDTO.getResult().getResultCode()) {
                 case "1220":
@@ -84,6 +103,18 @@ public class CallbackImpl implements Callback {
         boolean success = false;
         Gson gson = new Gson();
         SmileIdentityResponseDTO smileIdentityResponseDTO = gson.fromJson(json, SmileIdentityResponseDTO.class);
+
+
+        //update db
+        SelfieResults selfieResults=selfieResultsRepository
+                .getResultsByJobId(smileIdentityResponseDTO
+                        .getResult()
+                        .getPartnerParams()
+                        .getJob_id());
+        selfieResults.setJson(json);
+        selfieResults.setSource(ResultSource.CALLBACK);
+        selfieResultsRepository.edit(selfieResults);
+
         if(smileIdentityResponseDTO.getResult().getPartnerParams().getJob_type().equals("2")){ //authentication
             switch (smileIdentityResponseDTO.getResult().getResultCode()) {
                 case "1220":
@@ -149,6 +180,16 @@ public class CallbackImpl implements Callback {
         String jsonString = selfieService.processSelfie(processSelfieDto);
         Gson gson = new Gson();
         SmileIdentityResponseDTO smileIdentityResponseDTO = gson.fromJson(jsonString, SmileIdentityResponseDTO.class);
+
+        //update db
+        SelfieResults selfieResults=new SelfieResults();
+        selfieResults.setJobId(smileIdentityResponseDTO.getResult().getPartnerParams().getJob_id());
+        selfieResults.setUserId(smileIdentityResponseDTO.getResult().getPartnerParams().getUser_id());
+        selfieResults.setJson(jsonString);
+        selfieResults.setSource(ResultSource.CALLBACK);
+        selfieResultsRepository.create(selfieResults);
+
+
         if(smileIdentityResponseDTO.isJob_complete() && smileIdentityResponseDTO.isJob_success()) {
             if (processSelfieDto.getJobType() == 1) { //registration with id verification
 
