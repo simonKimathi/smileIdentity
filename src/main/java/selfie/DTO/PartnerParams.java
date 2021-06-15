@@ -1,7 +1,6 @@
 
 package selfie.DTO;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,17 +8,13 @@ import lombok.Setter;
 @Setter
 public class PartnerParams {
 
-   
-    @JsonProperty("job_id")
-    private String jobId;
-   
-    @JsonProperty("job_type")
-    private String jobType;
-   
-    @JsonProperty("optional_info")
-    private String optionalInfo;
-   
-    @JsonProperty("user_id")
-    private String userId;
+
+    private String job_id;
+
+    private String job_type;
+
+    private String optional_info;
+
+    private String user_id;
 
 }

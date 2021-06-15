@@ -1,7 +1,6 @@
 
 package selfie.DTO;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,38 +8,28 @@ import lombok.Setter;
 @Setter
 public class Result {
 
-   
-    @JsonProperty("Actions")
-    private Actions actions;
-   
-    @JsonProperty("ConfidenceValue")
-    private String confidenceValue;
-   
-    @JsonProperty("IsFinalResult")
-    private String isFinalResult;
-   
-    @JsonProperty("IsMachineResult")
-    private String isMachineResult;
-   
-    @JsonProperty("JSONVersion")
-    private String jSONVersion;
-   
-    @JsonProperty("PartnerParams")
-    private PartnerParams partnerParams;
-   
-    @JsonProperty("ResultCode")
-    private String resultCode;
-   
-    @JsonProperty("ResultText")
-    private String resultText;
-   
-    @JsonProperty("ResultType")
-    private String resultType;
-   
-    @JsonProperty("SmileJobID")
-    private String smileJobID;
-   
-    @JsonProperty("Source")
-    private String source;
+
+
+    private Actions Actions;
+
+    private String ConfidenceValue;
+
+    private String IsFinalResult;
+
+    private String IsMachineResult;
+
+    private String JSONVersion;
+
+    private PartnerParams PartnerParams;
+
+    private String ResultCode;
+
+    private String ResultText;
+
+    private String ResultType;
+
+    private String SmileJobID;
+
+    private String Source;
 
 }

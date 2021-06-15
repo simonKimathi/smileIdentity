@@ -1,7 +1,6 @@
 
 package selfie.DTO;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.List;
@@ -21,16 +20,12 @@ public class SmileIdentityResponseDTO {
 
     private List<History> history;
 
-    @JsonProperty("image_links")
-    private ImageLinks imageLinks;
+    private ImageLinks image_links;
 
-   
-    @JsonProperty("job_complete")
-    private Boolean jobComplete;
 
-   
-    @JsonProperty("job_success")
-    private Boolean jobSuccess;
+    private Boolean job_complete;
+
+    private Boolean job_success;
 
     private Result result;
 
