@@ -1,0 +1,16 @@
+selfie/util/StringUtil.class
+selfie/util/Ignore.class
+selfie/DTO/SmileIdentityResponseDTO.class
+selfie/util/RandomUtil.class
+selfie/DTO/PartnerParams.class
+selfie/DTO/History.class
+selfie/controller/JaxRsActivation.class
+selfie/repository/AbstractRepository.class
+Main.class
+selfie/controller/impl/CallbackImpl.class
+selfie/DTO/Actions.class
+selfie/DTO/ImageLinks.class
+selfie/DTO/Result.class
+selfie/repository/impl/AbstractRepositoryImpl.class
+selfie/controller/Callback.class
+selfie/repository/impl/AbstractRepositoryImpl$DaoRetriever.class
