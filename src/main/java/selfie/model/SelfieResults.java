@@ -30,6 +30,8 @@ public class SelfieResults {
     @Column
     private ResultSource source=ResultSource.FIRSTRESULTS;
 
+    @Column boolean finalResult;
+
 
 
     @JsonbTransient
