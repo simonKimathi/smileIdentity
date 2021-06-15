@@ -21,6 +21,15 @@ public interface Callback {
     @Path("/smileIdentityCallback")
     Response smileIdentityCallback(String json);
 
+    @Operation(summary = "smile identity")
+    @APIResponse(responseCode = "200", description = "Ok")
+    @APIResponse(responseCode = "401", description = "Unauthorised")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/smileIdentityCallback")
+    Response smileIdentityCallbackPost(String json);
+
     @Operation(summary = "test register")
     @APIResponse(responseCode = "200", description = "Ok")
     @APIResponse(responseCode = "401", description = "Unauthorised")
