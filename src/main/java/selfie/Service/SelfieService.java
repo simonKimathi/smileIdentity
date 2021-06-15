@@ -1,6 +1,10 @@
 package selfie.Service;
 
+import org.apache.commons.io.FileUtils;
 import smile.identity.core.*;
+
+import java.io.File;
+import java.util.Base64;
 
 import static selfie.util.Constants.*;
 
@@ -9,7 +13,7 @@ public class SelfieService {
     public String registerSelfie(){
 
         try {
-            PartnerParameters partnerParameters = new PartnerParameters("simon", "simonregistration", 1);
+            PartnerParameters partnerParameters = new PartnerParameters("simon1", "simon1registration", 1);
             //job types
             /*1
             Register with ID
@@ -43,8 +47,18 @@ public class SelfieService {
             // 1 - ID card image jpg or png
             // 2 - Selfie image jpg or png base64 encoded
             // 3 - ID card image jpg or png base 64 encoded
+            String inputFilePath = "simon.jpeg";
+            ClassLoader classLoader = getClass().getClassLoader();
+            File inputFile = new File(classLoader
+                    .getResource(inputFilePath)
+                    .getFile());
+            byte[] fileContent = FileUtils.readFileToByteArray(inputFile);
+            String encodedString = Base64
+                    .getEncoder()
+                    .encodeToString(fileContent);
+            System.out.println(encodedString);
             ImageParameters imageParameters = new ImageParameters();
-            imageParameters.add(1, MY_PIC_64);
+            imageParameters.add(1, encodedString);
 
             Options options = new Options(CALLBACK, true, true, true);
 
