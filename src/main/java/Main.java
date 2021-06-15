@@ -41,7 +41,7 @@ public class Main {
             // 2 - Selfie image jpg or png base64 encoded
             // 3 - ID card image jpg or png base 64 encoded
             ImageParameters imageParameters = new ImageParameters();
-            imageParameters.add(2, "simon.jpeg");
+            imageParameters.add(4, MY_PIC_64);
 
             Options options = new Options(CALLBACK, true, true, true);
 
