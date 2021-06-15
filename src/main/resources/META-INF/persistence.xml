@@ -4,7 +4,7 @@
     <persistence-unit name="pu" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 <!--        <jta-data-source>java:jboss/datasources/PostgresMss</jta-data-source>-->
-        <jta-data-source>java:/MySqlDS</jta-data-source>
+        <jta-data-source>java:/smileIdentity</jta-data-source>
         <properties>
 <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
