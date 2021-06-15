@@ -46,12 +46,13 @@ public class CallbackImpl implements Callback {
         Gson gson = new Gson();
         SmileIdentityResponseDTO smileIdentityResponseDTO = gson.fromJson(jsonString, SmileIdentityResponseDTO.class);
         if(smileIdentityResponseDTO.isJob_complete() && smileIdentityResponseDTO.isJob_success()) {
-            if (processSelfieDto.getJobType() == 4 || processSelfieDto.getJobType() == 1) { //registration
+            if (processSelfieDto.getJobType() == 1) { //registration with id verification
+
                 return Response.status(Response.Status.OK)
                         .entity(SuccessVm.builder().success(true).data(smileIdentityResponseDTO).msg("Registered Successfully").build())
                         .build();
             }
-            else { //authentication
+            else if (processSelfieDto.getJobType() == 2)  { //authentication
                 switch (smileIdentityResponseDTO.getResult().getResultCode()){
                     case "0921":
                         message="FAIL - No Face Found";
@@ -83,6 +84,48 @@ public class CallbackImpl implements Callback {
                         break;
                     case "0825":
                         message="Machine Judgement - PROVISIONAL - Machine Compare Unsure, Awaiting Human Judgement";
+                        success=true;
+                        break;
+                    default:
+
+                }
+                return Response.status(Response.Status.OK)
+                        .entity(SuccessVm.builder().success(success).data(smileIdentityResponseDTO).msg(message).build())
+                        .build();
+
+            }
+            else if (processSelfieDto.getJobType() == 4)  { //Register Without ID
+                switch (smileIdentityResponseDTO.getResult().getResultCode()){
+                    case "0941":
+                        message="FAIL - No Face Found";
+                        success=false;
+                        break;
+                    case "0942":
+                        message="FAIL - Image Quality Judged Too Poor";
+                        success=false;
+                        break;
+                    case "0840":
+                        message="PASS - Machine Judgement";
+                        success=true;
+                        break;
+                    case "0841":
+                        message="FAIL - Machine Judgement - Compare Failed";
+                        success=false;
+                        break;
+                    case "0842":
+                        message="PROVISIONAL - Machine - Pure Provisional, Awaiting Human Judgement";
+                        success=true;
+                        break;
+                    case "0843":
+                        message="FAIL - Possible Spoof - Machine Judgement *";
+                        success=false;
+                        break;
+                    case "0844":
+                        message="PROVISIONAL - Possible Spoof - Machine Judgement, Awaiting Human Judgement";
+                        success=true;
+                        break;
+                    case "0846":
+                        message="PENDING - Possible Spoof - Machine Judgement, Awaiting Human Judgement";
                         success=true;
                         break;
                     default:
