@@ -22,13 +22,15 @@ public class CallbackImpl implements Callback {
 
     @Override
     public Response smileIdentityCallback(String json) {
+        logger.info("callback called");
+        Gson gson = new Gson();
+        SmileIdentityResponseDTO smileIdentityResponseDTO = gson.fromJson(json, SmileIdentityResponseDTO.class);
         return null;
     }
 
     @Override
     public Response testRegister(String userId, String jobId) {
         String jsonString = selfieService.registerSelfie(userId,jobId);
-        logger.info(jsonString);
         Gson gson = new Gson();
         SmileIdentityResponseDTO smileIdentityResponseDTO = gson.fromJson(jsonString, SmileIdentityResponseDTO.class);
         return Response.status(Response.Status.OK)
@@ -38,19 +40,62 @@ public class CallbackImpl implements Callback {
 
     @Override
     public Response processSelfie(@Valid ProcessSelfieDto processSelfieDto) {
-
+        String message = "";
+        boolean success = false;
         String jsonString = selfieService.processSelfie(processSelfieDto);
         Gson gson = new Gson();
         SmileIdentityResponseDTO smileIdentityResponseDTO = gson.fromJson(jsonString, SmileIdentityResponseDTO.class);
-        if(processSelfieDto.getJobType()==4 || processSelfieDto.getJobType()==1){
-            return Response.status(Response.Status.OK)
-                    .entity(SuccessVm.builder().success(true).data(smileIdentityResponseDTO).msg("Done").build())
-                    .build();
+        if(smileIdentityResponseDTO.isJob_complete() && smileIdentityResponseDTO.isJob_success()) {
+            if (processSelfieDto.getJobType() == 4 || processSelfieDto.getJobType() == 1) { //registration
+                return Response.status(Response.Status.OK)
+                        .entity(SuccessVm.builder().success(true).data(smileIdentityResponseDTO).msg("Registered Successfully").build())
+                        .build();
+            }
+            else { //authentication
+                switch (smileIdentityResponseDTO.getResult().getResultCode()){
+                    case "0921":
+                        message="FAIL - No Face Found";
+                        success=false;
+                        break;
+                    case "0922":
+                        message="FAIL - Image Quality Judged Too Poor";
+                        success=false;
+                        break;
+                    case "0820":
+                        message="Machine Judgement - PASS";
+                        success=true;
+                        break;
+                    case "0821":
+                        message="Machine Judgement - FAIL - COMPARISON";
+                        success=false;
+                        break;
+                    case "0822":
+                        message="Machine Judgement - PURE PROVISIONAL, Awaiting Human Judgement";
+                        success=true;
+                        break;
+                    case "0823":
+                        message="Machine Judgement - FAIL - Possible Spoof";
+                        success=false;
+                        break;
+                    case "0824":
+                        message="Machine Judgement - PROVISIONAL - Possible Spoof, Awaiting Human Judgement";
+                        success=true;
+                        break;
+                    case "0825":
+                        message="Machine Judgement - PROVISIONAL - Machine Compare Unsure, Awaiting Human Judgement";
+                        success=true;
+                        break;
+                    default:
+
+                }
+                return Response.status(Response.Status.OK)
+                        .entity(SuccessVm.builder().success(success).data(smileIdentityResponseDTO).msg(message).build())
+                        .build();
+
+            }
         }
-        else {
-            return Response.status(Response.Status.OK)
-                    .entity(SuccessVm.builder().success(true).data(smileIdentityResponseDTO).msg("Done").build())
-                    .build();
-        }
+        return Response.status(Response.Status.OK)
+                .entity(SuccessVm.builder().success(true).data(smileIdentityResponseDTO).msg("Waiting for Callback").build())
+                .build();
     }
 }

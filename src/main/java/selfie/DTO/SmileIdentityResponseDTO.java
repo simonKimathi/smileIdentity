@@ -23,9 +23,9 @@ public class SmileIdentityResponseDTO {
     private ImageLinks image_links;
 
 
-    private Boolean job_complete;
+    private boolean job_complete;
 
-    private Boolean job_success;
+    private boolean job_success;
 
     private Result result;
 
