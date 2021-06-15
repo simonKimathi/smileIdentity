@@ -95,7 +95,7 @@ public class CallbackImpl implements Callback {
             }
         }
         return Response.status(Response.Status.OK)
-                .entity(SuccessVm.builder().success(true).data(smileIdentityResponseDTO).msg("Waiting for Callback").build())
+                .entity(SuccessVm.builder().success(false).data(smileIdentityResponseDTO).msg(smileIdentityResponseDTO.getResult().getResultText()).build())
                 .build();
     }
 }
