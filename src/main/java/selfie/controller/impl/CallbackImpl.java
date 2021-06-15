@@ -22,7 +22,7 @@ public class CallbackImpl implements Callback {
 
     @Override
     public Response smileIdentityCallback(String json) {
-        logger.info("callback called");
+        logger.info("callback called GET");
         logger.info(json);
         String message = "";
         boolean success = false;
@@ -78,7 +78,7 @@ public class CallbackImpl implements Callback {
 
     @Override
     public Response smileIdentityCallbackPost(String json) {
-        logger.info("callback called");
+        logger.info("callback called POST");
         logger.info(json);
         String message = "";
         boolean success = false;
