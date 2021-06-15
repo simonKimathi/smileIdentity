@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "selfieREsults")
+@Table(name = "selfieResults")
 @Setter
 @Getter
 public class SelfieResults {

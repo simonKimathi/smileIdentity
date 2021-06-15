@@ -9,7 +9,7 @@ public class SelfieService {
     public String registerSelfie(){
 
         try {
-            PartnerParameters partnerParameters = new PartnerParameters("user1", "registration", 1);
+            PartnerParameters partnerParameters = new PartnerParameters("simon", "simonregistration", 1);
             //job types
             /*1
             Register with ID
@@ -44,7 +44,7 @@ public class SelfieService {
             // 2 - Selfie image jpg or png base64 encoded
             // 3 - ID card image jpg or png base 64 encoded
             ImageParameters imageParameters = new ImageParameters();
-            imageParameters.add(4, MY_PIC_64);
+            imageParameters.add(1, MY_PIC_64);
 
             Options options = new Options(CALLBACK, true, true, true);
 
