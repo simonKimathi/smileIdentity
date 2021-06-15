@@ -23,8 +23,56 @@ public class CallbackImpl implements Callback {
     @Override
     public Response smileIdentityCallback(String json) {
         logger.info("callback called");
+        logger.info(json);
+        String message = "";
+        boolean success = false;
         Gson gson = new Gson();
         SmileIdentityResponseDTO smileIdentityResponseDTO = gson.fromJson(json, SmileIdentityResponseDTO.class);
+        if(smileIdentityResponseDTO.getResult().getPartnerParams().getJob_type().equals("2")){ //authentication
+            switch (smileIdentityResponseDTO.getResult().getResultCode()) {
+                case "1220":
+                    message = "Human Judgement - Pass";
+                    success = true;
+                    break;
+                case "1221":
+                    message = "Human Judgement - FAIL - Human Compare Failed";
+                    success = false;
+                    break;
+                case "1222":
+                    message = "Human Judgement - FAIL - Spoof Detected";
+                    success = false;
+                    break;
+                default:
+                    message = "Failed";
+                    success = false;
+            }
+            return Response.status(Response.Status.OK)
+                    .entity(SuccessVm.builder().success(success).data(smileIdentityResponseDTO).msg(message).build())
+                    .build();
+
+        }
+        else if(smileIdentityResponseDTO.getResult().getPartnerParams().getJob_type().equals("4")){
+            switch (smileIdentityResponseDTO.getResult().getResultCode()) {
+                case "1240":
+                    message = "PASS - Human Judgement";
+                    success = true;
+                    break;
+                case "1241":
+                    message = "FAIL - Image Unusable";
+                    success = false;
+                    break;
+                case "1242":
+                    message = "Spoof detected - Human Judgement";
+                    success = false;
+                    break;
+                default:
+                    message = "Failed";
+                    success = false;
+            }
+            return Response.status(Response.Status.OK)
+                    .entity(SuccessVm.builder().success(success).data(smileIdentityResponseDTO).msg(message).build())
+                    .build();
+        }
         return null;
     }
 
