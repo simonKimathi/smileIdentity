@@ -1,13 +1,8 @@
 import smile.identity.core.*;
 
+import static selfie.util.Constants.*;
+
 public class Main {
-    final String partnerId="1126";
-    final String callback="./";
-    final String decodedApiKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD6cCno3fv+ZrRCQ1bvJL8AnQFd" +
-            "i577RyvxJrvxQ6zM5UR2HoU4Fnm6/VAjZaSrI6EYR+PQDz1qtH/qrtcXzhJIAlYB" +
-            "uZpKnQFPUlqjmPEHlo0pankFycZpgDR8cSZxV1kT9Hx/3osdMb8XhW27ayBRwXLK" +
-            "dmIBImpZkRah6LERTQIDAQAB";
-    final String EncodedApiKey="LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHZk1BMEdDU3FHU0liM0RRRUJBUVVBQTRHTkFEQ0JpUUtCZ1FENmNDbm8zZnYrWnJSQ1ExYnZKTDhBblFGZAppNTc3Unl2eEpydnhRNnpNNVVSMkhvVTRGbm02L1ZBalphU3JJNkVZUitQUUR6MXF0SC9xcnRjWHpoSklBbFlCCnVacEtuUUZQVWxxam1QRUhsbzBwYW5rRnljWnBnRFI4Y1NaeFYxa1Q5SHgvM29zZE1iOFhoVzI3YXlCUndYTEsKZG1JQkltcFprUmFoNkxFUlRRSURBUUFCCi0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo=";
     private void faceRecognition(){
 
         try {
@@ -48,9 +43,9 @@ public class Main {
             ImageParameters imageParameters = new ImageParameters();
             imageParameters.add(2, "simon.jpeg");
 
-            Options options = new Options(callback, true, true, true);
+            Options options = new Options(CALLBACK, true, true, true);
 
-            WebApi connection = new WebApi(partnerId, callback, decodedApiKey, 0); //0-test, 1--development
+            WebApi connection = new WebApi(PARTNER_ID, CALLBACK, DECODED_API_KEY, TEST_SERVER_ID); //0-test, 1--development
 
             String response = connection.submit_job(partnerParameters.get(), imageParameters.get(), idInfo.get(), options.get());
             System.out.println("\n Response" + response);

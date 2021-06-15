@@ -15,6 +15,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+          <factory-entry name="pu" />
           <factory-entry name="test" />
         </datasource-mapping>
         <naming-strategy-map />
@@ -130,8 +131,8 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.jboss.resteasy:resteasy-jaxrs-services:3.1.0.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.jboss.spec.javax.annotation:jboss-annotations-api_1.2_spec:1.0.0.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.httpcomponents:httpclient:4.5.2" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.httpcomponents:httpcore:4.4.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.httpcomponents:httpclient:4.5.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.httpcomponents:httpcore:4.4.4" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.jboss.resteasy:resteasy-multipart-provider:3.1.0.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.jboss.resteasy:resteasy-client:3.1.0.Final" level="project" />
@@ -159,6 +160,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.10.19" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.19.0" level="project" />
+    <orderEntry type="library" name="Maven: com.smileidentity:smile-identity-core:1.0.8" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.13.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.wildfly.arquillian:wildfly-arquillian-container-managed:2.2.0.Final" level="project" />
