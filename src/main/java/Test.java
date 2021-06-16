@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Test {
     public static void main(String[] args) throws Exception{
-        File f =  new File("yona.png");
+        File f =  new File("simon.png");
         String encodstring = encodeFileToBase64Binary(f);
         System.out.println(encodstring);
     }
