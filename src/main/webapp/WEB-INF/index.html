@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.smileidentity.com/js/v1.0.0-beta.2/smart-camera-web.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<smart-camera-web>
+</smart-camera-web>
+</body>
+<script>
+    const smartCameraWeb = document.querySelector('smart-camera-web');
+
+    smartCameraWeb.addEventListener('imagesComputed', (e) => {
+        const data = e.detail;
+        console.log(data)
+
+        // add any textual data that may be required here
+    });
+</script>
+</html>
